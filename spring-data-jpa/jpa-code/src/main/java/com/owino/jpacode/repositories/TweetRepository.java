@@ -19,4 +19,7 @@ public interface TweetRepository extends JpaRepository<Tweet, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE tweet SET contents = ?1 WHERE contents LIKE '%#%'", nativeQuery = true)
     int updateContentsIfContainsHashTag(String updateBody);
+
+    @Query(value = "SELECT * FROM tweet WHERE tweetType = ?1", nativeQuery = true)
+    List<Tweet> findAllCircleTweets(String type);
 }

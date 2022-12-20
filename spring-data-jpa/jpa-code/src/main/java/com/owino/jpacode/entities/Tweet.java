@@ -1,5 +1,6 @@
 package com.owino.jpacode.entities;
 
+import com.owino.jpacode.entities.base.TweetMetadata;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.ToString;
@@ -14,10 +15,18 @@ import lombok.AllArgsConstructor;
 @Setter
 @ToString
 @Entity
-public class Tweet {
+public class Tweet extends TweetMetadata {
     @Id
     private long id;
     private String contents;
     private String dateString;
     private String timeString;
+
+    public Tweet(long id, String contents, String dateString, String timeString, String tweetType) {
+        this.id = id;
+        this.contents = contents;
+        this.dateString = dateString;
+        this.timeString = timeString;
+        super.setTweetType(tweetType);
+    }
 }

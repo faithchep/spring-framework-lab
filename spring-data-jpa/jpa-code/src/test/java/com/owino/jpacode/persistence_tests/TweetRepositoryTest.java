@@ -154,4 +154,14 @@ public class TweetRepositoryTest {
         Assertions.assertThat(updatedList.isEmpty()).isFalse();
         Assertions.assertThat(updatedList.get(0).getContents().contains("#")).isFalse();
     }
+
+    @Test
+    public void shouldFindAllCircleTweetsTests(){
+        repository.save( new Tweet(1L,"This is a very secret message","2022-11-11","12:30PM", "Circle Type"));
+        var circleTweets = repository.findAllCircleTweets("Circle Type");
+        Assertions.assertThat(circleTweets).isNotEmpty();
+        Assertions.assertThat(circleTweets.get(0)).isNotNull();
+        Assertions.assertThat(circleTweets.get(0).getTweetType()).isEqualTo("Circle Type");
+        Assertions.assertThat(circleTweets.get(0).getCreated()).isNotNull();
+    }
 }
