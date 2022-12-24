@@ -21,4 +21,19 @@ public class PasswordEncoderTest {
         Assertions.assertThat(encodedPassword).isNotNull();
         Assertions.assertThat(encodedPassword).isNotEqualTo(plainPassword);
     }
+
+    @Test
+    public void shouldDecodePasswordTest(){
+        String plainPassword = "1234567Password"; //not recommended password
+        var encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        var encodedPassword = encoder.encode(plainPassword);
+
+        var matches = encoder.matches(plainPassword, encodedPassword);
+
+        Assertions.assertThat(matches).isTrue();
+
+        matches = encoder.matches("incorrect-password-=here", encodedPassword);
+
+        Assertions.assertThat(matches).isFalse();
+    }
 }

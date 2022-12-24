@@ -55,7 +55,15 @@ The general format for a password is:
 {sha256}97cde38028ad898ebc02e690819fa220e88c62e0699403e94fff291cfffaf8410849f27605abcbc0
 ```
 
+- - -
 
+## Protection Against Common Exploits
+
+Spring security provides protection against common exploits.
+
+* **CSRF Attacks**
+* **HTTP Headers**
+* **HTTP Requests**
 
 
 
